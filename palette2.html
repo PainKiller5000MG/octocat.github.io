@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolvenLabs Vibrant Luxury Palettes 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #A8A8A8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: clamp(14px, 2.5vw, 18px);
+            color: #A8A8A8;
+            margin-bottom: 16px;
+        }
+        
+        .badge {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .badge span {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF006E 0%, #FF7E00 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .palette-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .palette-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .palette-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .palette-card:hover::before {
+            opacity: 1;
+        }
+        
+        .palette-card.trending {
+            border: 2px solid #FF006E;
+            background: rgba(255, 0, 110, 0.05);
+        }
+        
+        .palette-card.trending::after {
+            content: "🔥 TRENDING";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #FF006E;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .palette-title {
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #F5F5F5;
+            letter-spacing: -0.5px;
+        }
+        
+        .palette-description {
+            font-size: 14px;
+            color: #A8A8A8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .color-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .color-item {
+            text-align: center;
+        }
+        
+        .color-circle {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .color-circle:hover {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        
+        .color-circle::after {
+            content: '📋';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .color-circle:hover::after {
+            opacity: 1;
+        }
+        
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #6B6B6B;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .color-code:hover {
+            color: #F5F5F5;
+        }
+        
+        .theme-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-box {
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-box:hover {
+            transform: scale(1.02);
+        }
+        
+        .theme-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        .theme-demo {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .button-preview {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.08);
+            color: #A8A8A8;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            
+            .palette-card {
+                padding: 20px;
+            }
+            
+            .color-showcase {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .theme-preview {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-preview {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .palette-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .color-showcase {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .copied-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #10B981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .copied-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WolvenLabs Vibrant Luxury Palettes</h1>
+        <p class="subtitle">Premium color systems for bold, sophisticated brands in 2025</p>
+        <div class="badge">
+            <span>✨ Curated from Global Luxury Trends</span>
+        </div>
+        
+        <div class="palette-grid">
+            
+            <!-- Palette 1: Midnight Opulence -->
+            <div class="palette-card trending" style="--accent1: #1a1a2e; --accent2: #efc07b;">
+                <div class="palette-title">Midnight Opulence</div>
+                <div class="palette-description">Deep ocean tones meet golden luxury. Perfect for finance, luxury tech, and high-end corporate identities.[web:58]</div>
+                
+                <div class="color-showcase">
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #1a1a2e;" onclick="copyColor('#1a1a2e')"></div>
+                        <div class="color-code">#1a1a2e</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #16213e;" onclick="copyColor('#16213e')"></div>
+                        <div class="color-code">#16213e</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #0f3460;" onclick="copyColor('#0f3460')"></div>
+                        <div class="color-code">#0f3460</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #efc07b;" onclick="copyColor('#efc07b')"></div>
+                        <div class="color-code">#efc07b</div>
+                    </div>
+                </div>
+                
+                <div class="theme-preview">
+                    <div class="theme-box" style="background: #F5F1ED; color: #1a1a2e;">
+                        <div class="theme-label" style="color: #1a1a2e;">Light</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                    <div class="theme-box" style="background: #1a1a2e; color: #efc07b;">
+                        <div class="theme-label" style="color: #efc07b;">Dark</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                </div>
+                
+                <div class="button-preview">
+                    <div class="btn" style="background: #efc07b; color: #1a1a2e;">Primary</div>
+                    <div class="btn" style="background: transparent; border-color: #efc07b; color: #efc07b;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Prestige</span>
+                    <span class="tag">Corporate</span>
+                    <span class="tag">Powerful</span>
+                </div>
+            </div>
+            
+            <!-- Palette 2: Electric Nightlife -->
+            <div class="palette-card" style="--accent1: #00CAFF; --accent2: #F6287D;">
+                <div class="palette-title">Electric Nightlife</div>
+                <div class="palette-description">Neon energy meets luxury. High-impact palette for tech startups, events, and youth-focused premium brands.[web:70]</div>
+                
+                <div class="color-showcase">
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #00CAFF;" onclick="copyColor('#00CAFF')"></div>
+                        <div class="color-code">#00CAFF</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #F6287D;" onclick="copyColor('#F6287D')"></div>
+                        <div class="color-code">#F6287D</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #F9E400;" onclick="copyColor('#F9E400')"></div>
+                        <div class="color-code">#F9E400</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #0D0D0D;" onclick="copyColor('#0D0D0D')"></div>
+                        <div class="color-code">#0D0D0D</div>
+                    </div>
+                </div>
+                
+                <div class="theme-preview">
+                    <div class="theme-box" style="background: #FAFAF9; color: #0D0D0D;">
+                        <div class="theme-label" style="color: #F6287D;">Light</div>
+                        <div class="theme-demo" style="background: linear-gradient(135deg, #00CAFF, #F6287D); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">WolvenLabs</div>
+                    </div>
+                    <div class="theme-box" style="background: #0D0D0D; color: #00CAFF;">
+                        <div class="theme-label" style="color: #F9E400;">Dark</div>
+                        <div class="theme-demo" style="text-shadow: 0 0 20px rgba(0, 202, 255, 0.5);">WolvenLabs</div>
+                    </div>
+                </div>
+                
+                <div class="button-preview">
+                    <div class="btn" style="background: linear-gradient(135deg, #00CAFF, #F6287D); color: white;">Primary</div>
+                    <div class="btn" style="background: transparent; border-color: #00CAFF; color: #00CAFF;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Energetic</span>
+                    <span class="tag">Bold</span>
+                    <span class="tag">Youth</span>
+                </div>
+            </div>
+            
+            <!-- Palette 3: Coral Luxe -->
+            <div class="palette-card" style="--accent1: #FF8DA1; --accent2: #007BA7;">
+                <div class="palette-title">Coral Luxe</div>
+                <div class="palette-description">Vibrant coral balanced with deep navy and lavender. Sophisticated warmth for lifestyle and fashion brands.[web:69]</div>
+                
+                <div class="color-showcase">
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #FF8DA1;" onclick="copyColor('#FF8DA1')"></div>
+                        <div class="color-code">#FF8DA1</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #007BA7;" onclick="copyColor('#007BA7')"></div>
+                        <div class="color-code">#007BA7</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #D3D3FF;" onclick="copyColor('#D3D3FF')"></div>
+                        <div class="color-code">#D3D3FF</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #54463A;" onclick="copyColor('#54463A')"></div>
+                        <div class="color-code">#54463A</div>
+                    </div>
+                </div>
+                
+                <div class="theme-preview">
+                    <div class="theme-box" style="background: #F5F1ED; color: #54463A;">
+                        <div class="theme-label" style="color: #FF8DA1;">Light</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                    <div class="theme-box" style="background: #007BA7; color: #FF8DA1;">
+                        <div class="theme-label" style="color: #D3D3FF;">Dark</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                </div>
+                
+                <div class="button-preview">
+                    <div class="btn" style="background: #FF8DA1; color: white;">Primary</div>
+                    <div class="btn" style="background: transparent; border-color: #007BA7; color: #007BA7;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Playful</span>
+                    <span class="tag">Warm</span>
+                    <span class="tag">Lifestyle</span>
+                </div>
+            </div>
+            
+            <!-- Palette 4: Sapphire Dreams -->
+            <div class="palette-card" style="--accent1: #1D2B56; --accent2: #F8E8C1;">
+                <div class="palette-title">Sapphire Dreams</div>
+                <div class="palette-description">Royal elegance combining rich blues and soft gold. Ideal for high-end fashion, jewelry, and luxury services.[web:62]</div>
+                
+                <div class="color-showcase">
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #1D2B56;" onclick="copyColor('#1D2B56')"></div>
+                        <div class="color-code">#1D2B56</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #364B7A;" onclick="copyColor('#364B7A')"></div>
+                        <div class="color-code">#364B7A</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #7587C4;" onclick="copyColor('#7587C4')"></div>
+                        <div class="color-code">#7587C4</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-circle" style="background: #F8E8C1;" onclick="copyColor('#F8E8C1')"></div>
+                        <div class="color-code">#F8E8C1</div>
+                    </div>
+                </div>
+                
+                <div class="theme-preview">
+                    <div class="theme-box" style="background: #F8E8C1; color: #1D2B56;">
+                        <div class="theme-label" style="color: #364B7A;">Light</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                    <div class="theme-box" style="background: #1D2B56; color: #F8E8C1;">
+                        <div class="theme-label" style="color: #7587C4;">Dark</div>
+                        <div class="theme-demo">WolvenLabs</div>
+                    </div>
+                </div>
