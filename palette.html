@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolvenLabs - 15 Vibrant Luxury Palettes 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #6366F1 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+        
+        .subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: #A8A8A8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #F5F5F5;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #A8A8A8;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #F5F5F5;
+        }
+        
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+        
+        .palette-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .palette-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .palette-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .palette-card:hover::before {
+            opacity: 1;
+        }
+        
+        .palette-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .palette-title {
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 800;
+            color: #F5F5F5;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        
+        .palette-number {
+            background: rgba(255, 255, 255, 0.1);
+            color: #A8A8A8;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .palette-description {
+            font-size: 14px;
+            color: #A8A8A8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .color-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.15);
+            z-index: 10;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+        
+        .color-swatch::after {
+            content: attr(data-color);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .color-swatch:hover::after {
+            opacity: 1;
+        }
+        
+        .preview-section {
+            margin-bottom: 20px;
+        }
+        
+        .preview-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6B6B6B;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .theme-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-box {
+            border-radius: 14px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .theme-box:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .theme-name {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+        
+        .theme-text {
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+        .button-demos {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .demo-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.06);
+            color: #A8A8A8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .copied-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .copied-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 1024px) {
+            .palette-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            
+            .header {
+                padding: 20px 10px;
+                margin-bottom: 40px;
+            }
+            
+            .palette-card {
+                padding: 24px;
+            }
+            
+            .color-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .button-demos {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .palette-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .filter-tabs {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>15 Vibrant Luxury Palettes</h1>
+            <p class="subtitle">Premium color systems for WolvenLabs - Curated from 2025 luxury brand trends</p>
+            <div class="badge-container">
+                <span class="badge">🎨 Pantone 2025 Inspired</span>
+                <span class="badge">✨ High-End Brands</span>
+                <span class="badge">🔥 Vibrant + Sophisticated</span>
+            </div>
+        </div>
+        
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterPalettes('all')">All Palettes</button>
+            <button class="filter-btn" onclick="filterPalettes('bold')">Bold & Vibrant</button>
+            <button class="filter-btn" onclick="filterPalettes('elegant')">Elegant</button>
+            <button class="filter-btn" onclick="filterPalettes('tech')">Tech Luxury</button>
+        </div>
+        
+        <div class="palette-grid">
+            
+            <!-- Palette 1: Midnight Opulence -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #1a1a2e, #efc07b);">
+                <div class="palette-header">
+                    <div class="palette-title">Midnight Opulence</div>
+                    <div class="palette-number">01</div>
+                </div>
+                <div class="palette-description">Deep navy meets warm gold. Perfect for finance, luxury tech, and sophisticated corporate brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #1a1a2e;" data-color="#1a1a2e" onclick="copyColor('#1a1a2e')"></div>
+                    <div class="color-swatch" style="background: #16213e;" data-color="#16213e" onclick="copyColor('#16213e')"></div>
+                    <div class="color-swatch" style="background: #0f3460;" data-color="#0f3460" onclick="copyColor('#0f3460')"></div>
+                    <div class="color-swatch" style="background: #efc07b;" data-color="#efc07b" onclick="copyColor('#efc07b')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F1ED; color: #1a1a2e;">
+                            <div class="theme-name" style="color: #16213e;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #1a1a2e; color: #efc07b;">
+                            <div class="theme-name" style="color: #efc07b;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #efc07b; color: #1a1a2e;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #efc07b; color: #efc07b;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Prestige</span>
+                    <span class="tag">Corporate</span>
+                    <span class="tag">Timeless</span>
+                </div>
+            </div>
+            
+            <!-- Palette 2: Electric Nightlife -->
+            <div class="palette-card" data-category="bold" style="--gradient: linear-gradient(90deg, #00CAFF, #F6287D);">
+                <div class="palette-header">
+                    <div class="palette-title">Electric Nightlife</div>
+                    <div class="palette-number">02</div>
+                </div>
+                <div class="palette-description">Neon energy meets luxury. High-impact palette for tech startups, events, and youth-focused brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #00CAFF;" data-color="#00CAFF" onclick="copyColor('#00CAFF')"></div>
+                    <div class="color-swatch" style="background: #F6287D;" data-color="#F6287D" onclick="copyColor('#F6287D')"></div>
+                    <div class="color-swatch" style="background: #F9E400;" data-color="#F9E400" onclick="copyColor('#F9E400')"></div>
+                    <div class="color-swatch" style="background: #0D0D0D;" data-color="#0D0D0D" onclick="copyColor('#0D0D0D')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #FAFAF9; color: #0D0D0D;">
+                            <div class="theme-name" style="color: #F6287D;">Light</div>
+                            <div class="theme-text" style="background: linear-gradient(135deg, #00CAFF, #F6287D); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #0D0D0D; color: #00CAFF;">
+                            <div class="theme-name" style="color: #F9E400;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: linear-gradient(135deg, #00CAFF, #F6287D); color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #00CAFF; color: #00CAFF;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Energetic</span>
+                    <span class="tag">Bold</span>
+                    <span class="tag">Youth</span>
+                </div>
+            </div>
+            
+            <!-- Palette 3: Coral Luxe -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #FF8DA1, #007BA7);">
+                <div class="palette-header">
+                    <div class="palette-title">Coral Luxe</div>
+                    <div class="palette-number">03</div>
+                </div>
+                <div class="palette-description">Vibrant coral balanced with deep navy. Sophisticated warmth for lifestyle and fashion brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #FF8DA1;" data-color="#FF8DA1" onclick="copyColor('#FF8DA1')"></div>
+                    <div class="color-swatch" style="background: #007BA7;" data-color="#007BA7" onclick="copyColor('#007BA7')"></div>
+                    <div class="color-swatch" style="background: #D3D3FF;" data-color="#D3D3FF" onclick="copyColor('#D3D3FF')"></div>
+                    <div class="color-swatch" style="background: #54463A;" data-color="#54463A" onclick="copyColor('#54463A')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F1ED; color: #54463A;">
+                            <div class="theme-name" style="color: #FF8DA1;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #007BA7; color: #FF8DA1;">
+                            <div class="theme-name" style="color: #D3D3FF;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #FF8DA1; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #007BA7; color: #007BA7;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Playful</span>
+                    <span class="tag">Warm</span>
+                    <span class="tag">Lifestyle</span>
+                </div>
+            </div>
+            
+            <!-- Palette 4: Sapphire Dreams -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #1D2B56, #F8E8C1);">
+                <div class="palette-header">
+                    <div class="palette-title">Sapphire Dreams</div>
+                    <div class="palette-number">04</div>
+                </div>
+                <div class="palette-description">Royal elegance with rich blues and soft gold. Ideal for jewelry, fashion, and luxury services.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #1D2B56;" data-color="#1D2B56" onclick="copyColor('#1D2B56')"></div>
+                    <div class="color-swatch" style="background: #364B7A;" data-color="#364B7A" onclick="copyColor('#364B7A')"></div>
+                    <div class="color-swatch" style="background: #7587C4;" data-color="#7587C4" onclick="copyColor('#7587C4')"></div>
+                    <div class="color-swatch" style="background: #F8E8C1;" data-color="#F8E8C1" onclick="copyColor('#F8E8C1')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F8E8C1; color: #1D2B56;">
+                            <div class="theme-name" style="color: #364B7A;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #1D2B56; color: #F8E8C1;">
+                            <div class="theme-name" style="color: #7587C4;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #7587C4; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #F8E8C1; color: #F8E8C1;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Royal</span>
+                    <span class="tag">Classic</span>
+                    <span class="tag">Premium</span>
+                </div>
+            </div>
+            
+            <!-- Palette 5: Cyber Luxe -->
+            <div class="palette-card" data-category="tech" style="--gradient: linear-gradient(90deg, #00FFF0, #FF00FF);">
+                <div class="palette-header">
+                    <div class="palette-title">Cyber Luxe</div>
+                    <div class="palette-number">05</div>
+                </div>
+                <div class="palette-description">Futuristic neon meets premium dark. Perfect for AI, blockchain, and cutting-edge tech brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #00FFF0;" data-color="#00FFF0" onclick="copyColor('#00FFF0')"></div>
+                    <div class="color-swatch" style="background: #FF00FF;" data-color="#FF00FF" onclick="copyColor('#FF00FF')"></div>
+                    <div class="color-swatch" style="background: #7B2CBF;" data-color="#7B2CBF" onclick="copyColor('#7B2CBF')"></div>
+                    <div class="color-swatch" style="background: #0A0A0A;" data-color="#0A0A0A" onclick="copyColor('#0A0A0A')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F5F5; color: #0A0A0A;">
+                            <div class="theme-name" style="color: #7B2CBF;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #0A0A0A; color: #00FFF0;">
+                            <div class="theme-name" style="color: #FF00FF;">Dark</div>
+                            <div class="theme-text" style="text-shadow: 0 0 20px rgba(0, 255, 240, 0.5);">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: linear-gradient(135deg, #00FFF0, #FF00FF); color: #0A0A0A;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #00FFF0; color: #00FFF0;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Futuristic</span>
+                    <span class="tag">Tech</span>
+                    <span class="tag">Bold</span>
+                </div>
+            </div>
+            
+            <!-- Palette 6: Emerald Dynasty -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #004225, #D4AF37);">
+                <div class="palette-header">
+                    <div class="palette-title">Emerald Dynasty</div>
+                    <div class="palette-number">06</div>
+                </div>
+                <div class="palette-description">Deep emerald with rich gold. Old-money elegance for finance, real estate, and heritage brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #004225;" data-color="#004225" onclick="copyColor('#004225')"></div>
+                    <div class="color-swatch" style="background: #0A5F38;" data-color="#0A5F38" onclick="copyColor('#0A5F38')"></div>
+                    <div class="color-swatch" style="background: #10B981;" data-color="#10B981" onclick="copyColor('#10B981')"></div>
+                    <div class="color-swatch" style="background: #D4AF37;" data-color="#D4AF37" onclick="copyColor('#D4AF37')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #FAFAF9; color: #004225;">
+                            <div class="theme-name" style="color: #0A5F38;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #004225; color: #D4AF37;">
+                            <div class="theme-name" style="color: #10B981;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #10B981; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #D4AF37; color: #D4AF37;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Heritage</span>
+                    <span class="tag">Wealthy</span>
+                    <span class="tag">Classic</span>
+                </div>
+            </div>
+            
+            <!-- Palette 7: Crimson Velvet -->
+            <div class="palette-card" data-category="bold" style="--gradient: linear-gradient(90deg, #8B0000, #FFD700);">
+                <div class="palette-header">
+                    <div class="palette-title">Crimson Velvet</div>
+                    <div class="palette-number">07</div>
+                </div>
+                <div class="palette-description">Deep red meets gold. Dramatic luxury for fashion, entertainment, and bold premium brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #8B0000;" data-color="#8B0000" onclick="copyColor('#8B0000')"></div>
+                    <div class="color-swatch" style="background: #DC143C;" data-color="#DC143C" onclick="copyColor('#DC143C')"></div>
+                    <div class="color-swatch" style="background: #FF6B6B;" data-color="#FF6B6B" onclick="copyColor('#FF6B6B')"></div>
+                    <div class="color-swatch" style="background: #FFD700;" data-color="#FFD700" onclick="copyColor('#FFD700')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F1ED; color: #8B0000;">
+                            <div class="theme-name" style="color: #DC143C;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #8B0000; color: #FFD700;">
+                            <div class="theme-name" style="color: #FF6B6B;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #DC143C; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #FFD700; color: #FFD700;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Dramatic</span>
+                    <span class="tag">Passionate</span>
+                    <span class="tag">Bold</span>
+                </div>
+            </div>
+            
+            <!-- Palette 8: Arctic Platinum -->
+            <div class="palette-card" data-category="tech" style="--gradient: linear-gradient(90deg, #D0E1F9, #4D648D);">
+                <div class="palette-header">
+                    <div class="palette-title">Arctic Platinum</div>
+                    <div class="palette-number">08</div>
+                </div>
+                <div class="palette-description">Cool sophistication with icy blues and platinum. Clean luxury for minimalist tech brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #D0E1F9;" data-color="#D0E1F9" onclick="copyColor('#D0E1F9')"></div>
+                    <div class="color-swatch" style="background: #7AA2E3;" data-color="#7AA2E3" onclick="copyColor('#7AA2E3')"></div>
+                    <div class="color-swatch" style="background: #4D648D;" data-color="#4D648D" onclick="copyColor('#4D648D')"></div>
+                    <div class="color-swatch" style="background: #E8E8E8;" data-color="#E8E8E8" onclick="copyColor('#E8E8E8')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #D0E1F9; color: #4D648D;">
+                            <div class="theme-name" style="color: #4D648D;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #4D648D; color: #D0E1F9;">
+                            <div class="theme-name" style="color: #7AA2E3;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #7AA2E3; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #4D648D; color: #4D648D;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Clean</span>
+                    <span class="tag">Minimal</span>
+                    <span class="tag">Tech</span>
+                </div>
+            </div>
+            
+            <!-- Palette 9: Sunset Majesty -->
+            <div class="palette-card" data-category="bold" style="--gradient: linear-gradient(90deg, #FF6B35, #F7931E);">
+                <div class="palette-header">
+                    <div class="palette-title">Sunset Majesty</div>
+                    <div class="palette-number">09</div>
+                </div>
+                <div class="palette-description">Warm orange gradients with deep purple. Energetic luxury for creative and lifestyle brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #FF6B35;" data-color="#FF6B35" onclick="copyColor('#FF6B35')"></div>
+                    <div class="color-swatch" style="background: #F7931E;" data-color="#F7931E" onclick="copyColor('#F7931E')"></div>
+                    <div class="color-swatch" style="background: #5B2A86;" data-color="#5B2A86" onclick="copyColor('#5B2A86')"></div>
+                    <div class="color-swatch" style="background: #1A1423;" data-color="#1A1423" onclick="copyColor('#1A1423')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #FAFAF9; color: #5B2A86;">
+                            <div class="theme-name" style="color: #FF6B35;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #1A1423; color: #F7931E;">
+                            <div class="theme-name" style="color: #FF6B35;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: linear-gradient(135deg, #FF6B35, #F7931E); color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #5B2A86; color: #5B2A86;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Warm</span>
+                    <span class="tag">Creative</span>
+                    <span class="tag">Energetic</span>
+                </div>
+            </div>
+            
+            <!-- Palette 10: Midnight Violet (Original Recommended) -->
+            <div class="palette-card" data-category="tech" style="--gradient: linear-gradient(90deg, #6366F1, #8B5CF6);">
+                <div class="palette-header">
+                    <div class="palette-title">Midnight Violet</div>
+                    <div class="palette-number">10</div>
+                </div>
+                <div class="palette-description">Royal purple meets electric indigo. Creative-tech luxury bridging design and engineering.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #6366F1;" data-color="#6366F1" onclick="copyColor('#6366F1')"></div>
+                    <div class="color-swatch" style="background: #8B5CF6;" data-color="#8B5CF6" onclick="copyColor('#8B5CF6')"></div>
+                    <div class="color-swatch" style="background: #A78BFA;" data-color="#A78BFA" onclick="copyColor('#A78BFA')"></div>
+                    <div class="color-swatch" style="background: #4338CA;" data-color="#4338CA" onclick="copyColor('#4338CA')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #FAFAF9; color: #4338CA;">
+                            <div class="theme-name" style="color: #6366F1;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #0D0D0D; color: #A78BFA;">
+                            <div class="theme-name" style="color: #8B5CF6;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #6366F1; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #8B5CF6; color: #8B5CF6;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Royal</span>
+                    <span class="tag">Creative</span>
+                    <span class="tag">Tech</span>
+                </div>
+            </div>
+            
+            <!-- Palette 11: Rose Gold Elegance -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #B76E79, #2C1810);">
+                <div class="palette-header">
+                    <div class="palette-title">Rose Gold Elegance</div>
+                    <div class="palette-number">11</div>
+                </div>
+                <div class="palette-description">Soft rose gold with deep brown. Feminine luxury for beauty, wellness, and boutique brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #B76E79;" data-color="#B76E79" onclick="copyColor('#B76E79')"></div>
+                    <div class="color-swatch" style="background: #E8B4B8;" data-color="#E8B4B8" onclick="copyColor('#E8B4B8')"></div>
+                    <div class="color-swatch" style="background: #5C4742;" data-color="#5C4742" onclick="copyColor('#5C4742')"></div>
+                    <div class="color-swatch" style="background: #2C1810;" data-color="#2C1810" onclick="copyColor('#2C1810')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #E8B4B8; color: #2C1810;">
+                            <div class="theme-name" style="color: #5C4742;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #2C1810; color: #E8B4B8;">
+                            <div class="theme-name" style="color: #B76E79;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #B76E79; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #E8B4B8; color: #E8B4B8;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Feminine</span>
+                    <span class="tag">Soft</span>
+                    <span class="tag">Boutique</span>
+                </div>
+            </div>
+            
+            <!-- Palette 12: Ocean Depths -->
+            <div class="palette-card" data-category="tech" style="--gradient: linear-gradient(90deg, #003049, #D62828);">
+                <div class="palette-header">
+                    <div class="palette-title">Ocean Depths</div>
+                    <div class="palette-number">12</div>
+                </div>
+                <div class="palette-description">Deep ocean blues with vibrant coral accent. Modern maritime luxury for travel and hospitality.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #003049;" data-color="#003049" onclick="copyColor('#003049')"></div>
+                    <div class="color-swatch" style="background: #006494;" data-color="#006494" onclick="copyColor('#006494')"></div>
+                    <div class="color-swatch" style="background: #13A8A8;" data-color="#13A8A8" onclick="copyColor('#13A8A8')"></div>
+                    <div class="color-swatch" style="background: #D62828;" data-color="#D62828" onclick="copyColor('#D62828')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F5F5; color: #003049;">
+                            <div class="theme-name" style="color: #006494;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #003049; color: #13A8A8;">
+                            <div class="theme-name" style="color: #D62828;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #13A8A8; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #D62828; color: #D62828;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Maritime</span>
+                    <span class="tag">Travel</span>
+                    <span class="tag">Modern</span>
+                </div>
+            </div>
+            
+            <!-- Palette 13: Golden Hour -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #FFBE0B, #FB5607);">
+                <div class="palette-header">
+                    <div class="palette-title">Golden Hour</div>
+                    <div class="palette-number">13</div>
+                </div>
+                <div class="palette-description">Warm sunset palette with rich orange and yellow. Optimistic luxury for wellness and hospitality.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #FFBE0B;" data-color="#FFBE0B" onclick="copyColor('#FFBE0B')"></div>
+                    <div class="color-swatch" style="background: #FB5607;" data-color="#FB5607" onclick="copyColor('#FB5607')"></div>
+                    <div class="color-swatch" style="background: #FF006E;" data-color="#FF006E" onclick="copyColor('#FF006E')"></div>
+                    <div class="color-swatch" style="background: #3A0CA3;" data-color="#3A0CA3" onclick="copyColor('#3A0CA3')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #FAFAF9; color: #3A0CA3;">
+                            <div class="theme-name" style="color: #FB5607;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #3A0CA3; color: #FFBE0B;">
+                            <div class="theme-name" style="color: #FF006E;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: linear-gradient(135deg, #FFBE0B, #FB5607); color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #FF006E; color: #FF006E;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Optimistic</span>
+                    <span class="tag">Wellness</span>
+                    <span class="tag">Warm</span>
+                </div>
+            </div>
+            
+            <!-- Palette 14: Charcoal Mint -->
+            <div class="palette-card" data-category="tech" style="--gradient: linear-gradient(90deg, #2D2D2D, #00D9C0);">
+                <div class="palette-header">
+                    <div class="palette-title">Charcoal Mint</div>
+                    <div class="palette-number">14</div>
+                </div>
+                <div class="palette-description">Dark sophistication with fresh mint accent. Modern minimalism for fintech and SaaS brands.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #2D2D2D;" data-color="#2D2D2D" onclick="copyColor('#2D2D2D')"></div>
+                    <div class="color-swatch" style="background: #424242;" data-color="#424242" onclick="copyColor('#424242')"></div>
+                    <div class="color-swatch" style="background: #00D9C0;" data-color="#00D9C0" onclick="copyColor('#00D9C0')"></div>
+                    <div class="color-swatch" style="background: #B8F3FF;" data-color="#B8F3FF" onclick="copyColor('#B8F3FF')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F5F5; color: #2D2D2D;">
+                            <div class="theme-name" style="color: #00D9C0;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #2D2D2D; color: #00D9C0;">
+                            <div class="theme-name" style="color: #B8F3FF;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #00D9C0; color: #2D2D2D;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #00D9C0; color: #00D9C0;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Minimal</span>
+                    <span class="tag">Fresh</span>
+                    <span class="tag">SaaS</span>
+                </div>
+            </div>
+            
+            <!-- Palette 15: Amethyst Noir -->
+            <div class="palette-card" data-category="elegant" style="--gradient: linear-gradient(90deg, #2E0249, #A31ACB);">
+                <div class="palette-header">
+                    <div class="palette-title">Amethyst Noir</div>
+                    <div class="palette-number">15</div>
+                </div>
+                <div class="palette-description">Deep purple luxury with vibrant magenta. Mysterious elegance for premium fashion and nightlife.</div>
+                
+                <div class="color-row">
+                    <div class="color-swatch" style="background: #2E0249;" data-color="#2E0249" onclick="copyColor('#2E0249')"></div>
+                    <div class="color-swatch" style="background: #570A57;" data-color="#570A57" onclick="copyColor('#570A57')"></div>
+                    <div class="color-swatch" style="background: #A31ACB;" data-color="#A31ACB" onclick="copyColor('#A31ACB')"></div>
+                    <div class="color-swatch" style="background: #FE00FE;" data-color="#FE00FE" onclick="copyColor('#FE00FE')"></div>
+                </div>
+                
+                <div class="preview-section">
+                    <div class="preview-label">Theme Preview</div>
+                    <div class="theme-toggle">
+                        <div class="theme-box" style="background: #F5F5F5; color: #2E0249;">
+                            <div class="theme-name" style="color: #570A57;">Light</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                        <div class="theme-box" style="background: #2E0249; color: #FE00FE;">
+                            <div class="theme-name" style="color: #A31ACB;">Dark</div>
+                            <div class="theme-text">WolvenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-demos">
+                    <div class="demo-btn" style="background: #A31ACB; color: white;">Primary</div>
+                    <div class="demo-btn" style="background: transparent; border-color: #FE00FE; color: #FE00FE;">Ghost</div>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Mysterious</span>
+                    <span class="tag">Nightlife</span>
+                    <span class="tag">Fashion</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="copied-notification" id="copiedNotification">
+        ✓ Color copied to clipboard!
+    </div>
+    
+    <script>
+        function copyColor(color) {
+            navigator.clipboard.writeText(color).then(() => {
+                const notification = document.getElementById('copiedNotification');
+                notification.textContent = `✓ ${color} copied!`;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+            });
+        }
+        
+        function filterPalettes(category) {
+            const cards = document.querySelectorAll('.palette-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+        
+        // Click-to-copy functionality for color swatches
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            swatch.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>
